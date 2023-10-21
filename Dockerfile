@@ -1,4 +1,4 @@
-FROM amake/wine:wine64-buster as inno
+FROM amake/wine:wine64-bookworm as inno
 MAINTAINER Aaron Madlon-Kay <aaron@madlon-kay.com>
 
 USER root
