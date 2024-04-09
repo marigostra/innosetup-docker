@@ -52,10 +52,17 @@ RUN addgroup --system xusers \
 RUN dpkg --add-architecture i386 \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
+    locales \
     wine \
     wine32 \
     osslsigncode \
     && rm -rf /var/lib/apt/lists/*
+
+RUN sed -i '/ru_RU.UTF-8/s/^# //g' /etc/locale.gen
+RUN locale-gen
+ENV LC_ALL ru_RU.UTF-8
+ENV LANG ru_RU.UTF-8
+ENV LANGUAGE ru_RU.UTF-8
 
 COPY opt /opt
 ENV PATH $PATH:/opt/bin
